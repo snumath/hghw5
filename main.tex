@@ -1,0 +1,235 @@
+
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath,amssymb,latexsym,amsfonts, amsthm}
+\usepackage[fontsize=13pt]{scrextend} % Font size
+% \usepackage{verbatim} % coding
+\usepackage{mathtools}
+
+
+\usepackage[tracking]{microtype} % Font
+\usepackage[sc,osf]{mathpazo} % Font
+\usepackage{graphicx}
+\usepackage{lipsum}
+
+% \usepackage[all]{xy} % diagram
+
+% \usepackage{tikz} % diagram
+% \usepackage{tikz-cd} % diagram
+
+% \usetikzlibrary{arrows}
+% \usetikzlibrary{matrix}
+
+
+\makeatletter
+\renewenvironment{cases}[1][l]{\matrix@check\cases\env@cases{#1}}{\endarray\right.}
+\def\env@cases#1{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrace\def\arraystretch{1.2}%
+  \array{@{}#1@{\quad}l@{}}}
+\makeatother
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{2016-11988} % Top left header
+\chead{3341.202 Introduction to Mathematical Analysis} % Top center header
+\rhead{Lee Young Jae} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newtheorem{lemma}{Lemma}
+
+
+\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+\begin{titlepage}
+\centering
+{\scshape\LARGE Seoul National University \par}
+\vspace{1.5cm}
+{\huge\bfseries Introduction to\\Mathematical Analysis 2\par}
+\vspace{1cm}
+{\scshape\Large Assignment \# 5\par}
+
+\vspace{1cm}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=80mm]{pulruk.jpg}
+\end{figure}
+
+\vspace{1cm}
+
+\arrayrulewidth=1.2pt
+\begin{tabular}{p{2.5cm}p{2cm}}
+\centering
+& \\
+\cline{2-2}
+\vspace{-.73cm}
+My Score? & \\
+\end{tabular}
+
+
+
+\vfill
+\text{2016-11988}
+\vspace{.7cm}\par
+\textsc{\large Lee Young Jae}
+\vspace{.7cm}\par
+{\Large \today\par}
+\end{titlepage}
+
+\setlength{\parindent}{0cm}
+
+
+\begin{enumerate}[font = \Large\bfseries\itshape\space, leftmargin = 3mm, labelsep = 3mm]
+\item
+Let $f : [0,1] \rightarrow \mathbb{R}$ be two times continuously differentiable.
+Show then
+$$\int_0^1 f(x)dx = \frac{1}{2}(f(0)+f(1))-R$$
+where
+$$R = \frac{1}{2} \int_0^1 x(x-1)f''(x)dx = \frac{1}{12} f''(\zeta)$$
+for some $\zeta \in [0,1]$.
+
+\begin{proof}
+$$
+\begin{aligned}
+R &= \frac{1}{2}\int_0^1 x(x-1)f''(x)dx\\
+&= \frac{1}{2}\left(-\left[x(x-1)f'(x)\right]_0^1 + \left[(2x-1)f(x)\right]_0^1 - \int_0^1 2f(x)dx \right)\\
+&= \frac{1}{2}\left(f(0) + f(1)\right) - \int_0^1 f(x)dx.
+\end{aligned}
+$$
+Therefore, $\frac{1}{2}(f(0) + f(1)) - R = \int_0^1 f(x)dx$.
+
+Let $g(t) = \frac{1}{2}t(f(0) + f(t)) - \int_0^t f(x)dx$ so that $R = g(1)$.
+Then, $g'(t) = \frac{1}{2}(f(0)+f(t)) + \frac{1}{2}tf'(t) - f(t) = \frac{1}{2}(f(0)-f(t) + tf'(t))$, $g''(t) = -\frac{1}{2}tf''(t)$.
+Let $f''$ has maximum value and minimum value at $\xi_M, \xi_m$ on $[0,t]$ respectively so that $\frac{1}{2} f''(\xi_m)t \leq g(t) \leq \frac{1}{2} f''(\xi_M)t$.
+Since $g'(t) = \int_0^t g''(x)dx$ and $g(t) = \int_0^t g'(x)dx$, $\frac{1}{12} f''(\xi_m) t^3 \leq g(t) \leq \frac{1}{12} f''(\xi_M)t^3$.
+Put $t = 1$ so that $\frac{1}{12}f''(\xi_m) \leq R = g(1) = \frac{1}{2}(f(0)+f(1)) - \int_0^1 f(x)dx \leq \frac{1}{12} f''(\xi_M)$.
+Since $f''$ is continuous, there exists $\zeta$ between $\xi_M$ and $\xi_m$ such that $R = \frac{1}{12}f''(\zeta)$.
+\end{proof}
+
+\item
+Prove Theorem 6.4.15 of the lecture following the sketch of proof.
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+\item $\int_0^1 t^{x-1}(1-t)^{y-1}dt$ exists for any $x,y > 0$.\\
+Let $f(t) = t^{x-1}(1-t)^{y-1}$.
+Then, $f'(t) = (x-1)t^{x-2}(1-t)^{y-1} + (y-1)t^{x-1}(1-t)^{y-2}$ and there exists $\delta > 0$ such that $f'(t) > 0$ for all $t \in [0,\delta]$.
+Moreover, $f(t) \leq t^{x-1}$ and therefore $\int_0^\delta f(t)dt = \lim_{\epsilon\searrow 0}\int_\epsilon^\delta f(t)dt \leq \lim_{\epsilon\searrow0}\int_\epsilon^\delta t^{x-1}dt = \int_0^{\delta} t^{x-1}dt = \frac{\delta^x}{x} < \infty$.
+Similarly, $\exists \delta'$ such that $\lim_{\epsilon\nearrow 1}\int_{\delta'}^\epsilon f(t)dt$ exists.
+Therefore, $\int_0^1 f(t)dt$ exists for any $x,y > 0$.
+
+\item For fixed $y > 0$ it holds:
+\begin{itemize}
+\item $B(1,y) = \frac{1}{y}$\\
+$B(1,y) = \int_0^1 (1-t)^{y-1}dt = \frac{1}{y}$
+\item $x \mapsto B(x,y)$ is log-convex on $\mathbb{R}^{++}$\\
+For fixed $y$ and $p,q$ such that $\frac{1}{p} + \frac{1}{q} = 1$, let $f_p(x) = t^{(x-1)/p}(1-t)^{(y-1)/p}, f_q(x) = t^{(x-1)/q}(1-t)^{(y-1)/q}$.
+Then, $B(x_1/p + x_2/q,y) = \|f_p f_q\|_1 \leq \|f_p\|_p\|f_q\|_q$ by H\"older's inequality.
+\item $B$ satisfies the following function equation
+$$xB(x,y) = (x+y)B(x+1,y)$$
+\end{itemize}
+Since $1 = t + (1-t)$, $B(x,y) = B(x+1,y) + B(x,y+1)$.
+Thus, it suffices to show that $xB(x+1,y) = yB(x,y+1)$.
+Let $t = \sin^2\theta$ and $\sin^x\theta = \sin^\phi$. Then,
+$dt = 2\sin\theta\cos\theta d\theta$ and $x\sin^{x-1}\theta \cos\theta d\theta = y\sin^{y-1}\phi \cos\phi d\phi$,
+$$
+\begin{aligned}
+xB(x+1,y) &= x\int_0^1 t^x(1-t)^{y-1}dt\\
+&= x\int_0^{\pi/2} \sin^{2x+1}\theta \cos^{2y-1}\theta d\theta\\
+&= y\int_0^{\pi/2} \sin^{2y+1}\phi \cos^{2x-1}\phi d\phi\\
+&= yB(x,y+1)
+\end{aligned}
+$$
+Let $F(x) = B(x,y) \frac{\Gamma(x+y)}{\Gamma(y)}$.
+Then, $F$ satisfies Bohr/Mollerup conditions, hence $F(x) = \Gamma(x)$.
+\end{enumerate}
+\end{proof}
+
+\item
+Show that for $x > 0$
+$$\Gamma(\frac{x}{2})\Gamma(\frac{x+1}{2}) = 2^{1-x}\sqrt{\pi}\Gamma(x).$$
+\textit{Hint:} Show that $F(x) := 2^x \Gamma(\frac{x}{2})\Gamma(\frac{x+1}{2})$ satisfies the Bohr/Mollerup conditions up to a constant.
+\begin{proof}
+Let $F(x) = 2^x \Gamma(\frac{x}{2})\Gamma(\frac{x+1}{2})$. Then,
+\begin{itemize}
+\item
+$F(1) = 2\Gamma(\frac{1}{2})\Gamma(1) = 2\sqrt{\pi}$.
+\item
+$F(x+1) = 2^{x+1} \Gamma(\frac{x+1}{2})\Gamma(1+\frac{x}{2}) = 2^{x+1} \frac{x}{2}\Gamma(\frac{x}{2})\Gamma(\frac{x+1}{2}) = xF(x).$
+\item
+Since $2^x, \Gamma(\frac{x}{2}), \Gamma(\frac{x+1}{2})$ are all log-concave, its product $F(x)$ is also log-concave.
+\end{itemize}
+Therefore, $\Gamma(x) = 2\sqrt{\pi} \Gamma(x)$, and $\Gamma(x)\Gamma(\frac{x+1}{2}) = 2^{2-x}\sqrt{\pi}\Gamma(x)$
+\end{proof}
+
+\item
+\begin{enumerate}[label=(\roman*)]
+\item
+Let $A_m = \int_0^{\frac{\pi}{2}}(\sin x)^mdx, m \in \mathbb{N} \cup \{0\}$.
+Show that for $m \geq 2$
+$$A_m = \frac{m-1}{m} A_{m-2}.$$
+\item
+Derive a formula for $A_{2n}$ and $A_{2n+1}$ and show that $A_{2n+2} \leq A_{2n+1} \leq A_{2n}$.
+Then show $\lim_{n\rightarrow\infty} \frac{A_{2n+2}}{A_{2n}} = 1$ as well as $\lim_{n\rightarrow\infty} \frac{A_{2n+1}}{A_{2n}} = 1$.
+Conclude that
+$$\prod_{k=1}^\infty \frac{4k^2}{4k^2-1} = \frac{\pi}{2}.$$
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+\item
+Integrating by parts,
+$$
+\begin{aligned}
+A_m &= \int_0^{\frac{\pi}{2}}(\sin x)^m dx\\
+&= \left[(\sin x)^{m-1} (-\cos x)\right]_0^{2\pi} + \int_0^{\frac{\pi}{2}} (m-1)(\sin x)^{m-2} (\cos x)^2dx\\
+&= (m-1)\int_0^{\frac{\pi}{2}} (\sin x)^{m-2}(1-\sin^2 x) dx\\
+&= (m-1) (A_{m-2} - A_m).
+\end{aligned}
+$$
+Therefore, $mA_m = (m-1) A_{m-2}$, and $A_m = \frac{m-1}{m}A_{m-2}$.
+
+\item
+$A_0 =\frac{\pi}{2}$ and $A_1 = 1$.
+Therefore, $A_{2n} = \frac{2n-1}{2n} \cdot \frac{2n-3}{2n-2} \cdots \frac{1}{2} \cdot \frac{\pi}{2}$, and
+$A_{2n+1} = \frac{2n}{2n+1} \cdot \frac{2n-2}{2n-1} \cdots \frac{2}{3}$.\\
+As $0 \leq (\sin x)^{2n+2} \leq (\sin x)^{2n+1} \leq (\sin x)^{2n}$ on $0 \leq x \leq \frac{\pi}{2}$, $A_{2n+2} \leq A_{2n+1} \leq A_{2n}$.\\
+$\lim_{n\rightarrow\infty} \frac{A_{2n+2}}{A_{2n}} = \lim_{n\rightarrow\infty}\frac{2n+1}{2n+2} = 1$, and as $A_{2n+2} \leq A_{2n+1} \leq A_{2n}$, $\frac{A_{2n+2}}{A_{2n}} \leq \frac{A_{2n+1}}{A_{2n}} \leq 1$, its limit $\lim_{n\rightarrow\infty}\frac{A_{2n+1}}{A_{2n}} = 1$.\\
+$\prod_{k=1}^\infty \frac{4k^2}{4k^2-1} = \prod_{k=1}^\infty \frac{2k}{2k-1} \frac{2k}{2k+1} = \lim_{n\rightarrow\infty} \frac{A_{2n}}{A_{2n+1}} \times \frac{\pi}{2} = \frac{\pi}{2}$.
+%Since $A_{2n}A_{2n+1} = \frac{\pi}{2(2n+1)}, A_{2n+1}A_{2n+2} = \frac{\pi}{2(2n+2)}$
+
+\end{enumerate}
+\end{proof}
+
+\end{enumerate}
+\end{document}
